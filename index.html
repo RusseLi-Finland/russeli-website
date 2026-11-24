@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RusseLi – nuoria, liikuntaa, yhteisöllisyyttä ja uusia mahdollisuuksia.">
+  <meta name="theme-color" content="#f6f2ea">
+
+  <title>RusseLi – Yhdessä enemmän</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f6f2ea;
+      --paper: #fffdf9;
+      --navy: #192b43;
+      --muted: #687586;
+      --terracotta: #b9573e;
+      --line: #e7e0d5;
+      --soft: #eee8de;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    header {
+      background: rgba(246,242,234,.96);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Manrope", sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+    }
+
+    .brand-name span {
+      color: var(--terracotta);
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: end;
+      gap: 3px;
+      height: 32px;
+    }
+
+    .pin {
+      width: 8px;
+      height: 24px;
+      background: var(--navy);
+      border-radius: 7px 7px 3px 3px;
+      position: relative;
+    }
+
+    .pin:nth-child(2) {
+      height: 30px;
+    }
+
+    .pin:nth-child(3) {
+      height: 20px;
+    }
+
+    .pin::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--terracotta);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .menu a {
+      transition: color .2s;
+    }
+
+    .menu a:hover {
+      color: var(--terracotta);
+    }
+
+    .menu .support-link {
+      background: var(--navy);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 30px;
+    }
+
+    .hero {
+      padding: 76px 0 65px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 65px);
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--terracotta);
+    }
+
+    .hero-text {
+      max-width: 480px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--terracotta);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #9e4933;
+    }
+
+    .hero-image {
+      min-height: 440px;
+      border-radius: 8px 90px 8px 8px;
+      background:
+        linear-gradient(0deg, rgba(25,43,67,.15), transparent),
+        url("https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+      position: relative;
+    }
+
+    .image-note {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--paper);
+      padding: 15px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      box-shadow: 0 5px 25px #00000012;
+    }
+
+    .image-note strong {
+      display: block;
+      font-family: "Manrope", sans-serif;
+      font-size: 17px;
+    }
+
+    .intro {
+      background: var(--paper);
+      padding: 75px 0;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: clamp(29px, 4vw, 42px);
+      max-width: 760px;
+      margin: 0 auto 22px;
+      letter-spacing: -1px;
+    }
+
+    .intro p {
+      max-width: 690px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .programs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .program-card {
+      background: var(--paper);
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      min-height: 220px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px #192b4310;
+    }
+
+    .program-number {
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .program-card h3 {
+      font-size: 22px;
+      margin-bottom: 13px;
+    }
+
+    .program-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .sport-section {
+      background: var(--navy);
+      color: white;
+    }
+
+    .sport-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .sport-section .eyebrow {
+      color: #e6a28e;
+    }
+
+    .sport-section h2 {
+      font-size: clamp(32px, 4vw, 45px);
+      margin-bottom: 22px;
+    }
+
+    .sport-section p {
+      color: #d0d9e3;
+      margin-bottom: 25px;
+    }
+
+    .sport-image {
+      height: 350px;
+      border-radius: 7px 75px 7px 7px;
+      background:
+        url("https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+    }
+
+    .sport-section .button {
+      background: #c66c53;
+    }
+
+    .community {
+      background: var(--soft);
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .community-card {
+      background: var(--paper);
+      padding: 32px;
+      border-radius: 7px;
+    }
+
+    .community-card h3 {
+      font-size: 23px;
+      margin-bottom: 13px;
+    }
+
+    .community-card p {
+      color: var(--muted);
+    }
+
+    .cooperation {
+      text-align: center;
+      background: var(--paper);
+    }
+
+    .cooperation .section-heading {
+      margin: 0 auto 30px;
+    }
+
+    .cooperation .button {
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #142338;
+      color: white;
+      padding: 55px 0 25px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 35px;
+    }
+
+    footer .brand {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer p {
+      color: #bdc8d5;
+      font-size: 13px;
+      max-width: 340px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      color: #d0d9e3;
+    }
+
+    .copyright {
+      border-top: 1px solid #ffffff22;
+      padding-top: 22px;
+      color: #aab7c6;
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .sport-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 340px;
+      }
+
+      .programs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu {
+        gap: 13px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 17px 0;
+        gap: 14px;
+      }
+
+      .menu {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding: 48px 0;
+      }
+
+      .hero-image {
+        min-height: 270px;
+        border-radius: 8px 55px 8px 8px;
+      }
+
+      .programs,
+      .community-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .intro {
+        padding: 55px 0;
+      }
+
+      .sport-image {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="brand">
+      <span class="logo-mark">
+        <i class="pin"></i>
+        <i class="pin"></i>
+        <i class="pin"></i>
+      </span>
+      <span class="brand-name">Russe<span>Li</span></span>
+    </a>
+
+    <nav class="menu">
+      <a href="#meista">Meistä</a>
+      <a href="#toiminta">Toiminta</a>
+      <a href="#sport">RusseLi Sport</a>
+      <a href="#nuorille">Nuorille</a>
+      <a href="#yhteistyo">Yhteistyö</a>
+      <a href="#tuki" class="support-link">Tue toimintaamme</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="eyebrow">Yhdessä enemmän</div>
+
+        <h1>
+          Mahdollisuuksia.<br>
+          Ystävyyttä.<br>
+          <span>Yhteisöllisyyttä.</span>
+        </h1>
+
+        <p class="hero-text">
+          RusseLi rakentaa yhteisöä, jossa nuoret voivat liikkua,
+          oppia, löytää uusia ystäviä ja kasvaa yhdessä.
+          Jokaisella on paikka joukossa.
+        </p>
+
+        <a href="#meista" class="button">Tutustu RusseLiin</a>
+      </div>
+
+      <div class="hero-image">
+        <div class="image-note">
+          <strong>Yhdessä eteenpäin</strong>
+          Liikunta yhdistää ihmisiä.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="intro" id="meista">
+    <div class="container">
+      <div class="eyebrow">Keitä me olemme</div>
+
+      <h2>Enemmän kuin harrastus. Paikka kuulua joukkoon.</h2>
+
+      <p>
+        RusseLi on yhteisöllinen aloite, jonka tavoitteena on
+        tarjota lapsille ja nuorille mahdollisuuksia liikuntaan,
+        yhdessä tekemiseen, oppimiseen ja henkilökohtaiseen
+        kasvuun. Uskomme, että jokainen ansaitsee mahdollisuuden
+        osallistua ja löytää oman paikkansa.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="toiminta">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Mitä teemme</div>
+        <h2>Toimintaa, joka tuo ihmisiä yhteen.</h2>
+        <p>
+          RusseLin toiminta rakentuu liikunnan, yhteisöllisyyden,
+          oppimisen ja uusien kokemusten ympärille.
+        </p>
+      </div>
+
+      <div class="programs">
+
+        <article class="program-card" id="sport">
+          <div class="program-number">01 / SPORT</div>
+          <h3>RusseLi Sport</h3>
+          <p>
+            Keilausta, harjoittelua, kilpailuja ja liikunnan iloa.
+            Mahdollisuuksia kehittyä omalla tasolla.
+          </p>
+        </article>
+
+        <article class="program-card">
+          <div class="program-number">02 / SOCIAL</div>
+          <h3>RusseLi Social</h3>
+          <p>
+            Kohtaamisia, ystävyyttä ja yhteistä tekemistä.
+            Kukaan ei jää yksin.
+          </p>
+        </article>
+
+        <article class="program-card">
+          <div class="program-number">03 / ACADEMY</div>
+          <h3>RusseLi Academy</h3>
+          <p>
+            Oppimista, ohjausta, uusia taitoja ja mahdollisuuksia
+            löytää omia vahvuuksia.
+          </p>
+        </article>
+
+        <article class="program-card">
+          <div class="program-number">04 / EVENTS</div>
+          <h3>RusseLi Events</h3>
+          <p>
+            Turnauksia, tapahtumia ja yhteisiä elämyksiä
+            eri ikäisille osallistujille.
+          </p>
+        </article>
+
+        <article class="program-card">
+          <div class="program-number">05 / MIND</div>
+          <h3>RusseLi Mind</h3>
+          <p>
+            Hyvinvointia, keskustelua, vertaistukea ja
+            turvallista yhteisöllisyyttä.
+          </p>
+        </article>
+
+        <article class="program-card">
+          <div class="program-number">06 / TALENT</div>
+          <h3>RusseLi Talent</h3>
+          <p>
+            Luovuutta, omien kykyjen löytämistä ja
+            mahdollisuuksia toteuttaa uusia ideoita.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section sport-section">
+    <div class="container sport-grid">
+
+      <div>
+        <div class="eyebrow">Liikunta yhdistää</div>
+
+        <h2>Jokainen harjoitus on mahdollisuus kehittyä.</h2>
+
+        <p>
+          Keilaus tarjoaa mahdollisuuden harjoitella,
+          oppia, kilpailla ja kokea onnistumisia yhdessä.
+          RusseLi haluaa luoda ympäristön, jossa nuoret
+          voivat kasvaa sekä urheilijoina että ihmisinä.
+        </p>
+
+        <a href="#nuorille" class="button">Tutustu toimintaan</a>
+      </div>
+
+      <div class="sport-image"></div>
+
+    </div>
+  </section>
+
+  <section class="section community" id="nuorille">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Kaikille on tilaa</div>
+        <h2>Yhteisö, jossa jokainen voi olla oma itsensä.</h2>
+        <p>
+          Haluamme rakentaa avoimen ympäristön, jossa
+          erilaiset ihmiset kohtaavat yhteisen tekemisen kautta.
+        </p>
+      </div>
+
+      <div class="community-grid">
+
+        <article class="community-card">
+          <h3>Nuorille</h3>
+          <p>
+            Turvallinen yhteisö, uusia ystäviä, liikuntaa,
+            oppimista ja mahdollisuuksia osallistua.
+          </p>
+        </article>
+
+        <article class="community-card">
+          <h3>Perheille</h3>
+          <p>
+            Mahdollisuus seurata nuorten kehitystä,
+            osallistua yhteiseen toimintaan ja olla mukana
+            rakentamassa yhteisöä.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section cooperation" id="yhteistyo">
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="eyebrow">Rakennetaan yhdessä</div>
+        <h2>Yhteistyöllä syntyy uusia mahdollisuuksia.</h2>
+        <p>
+          Etsimme yhteistyökumppaneita, yhteisöjä,
+          yrityksiä ja ihmisiä, jotka haluavat olla mukana
+          tukemassa lasten ja nuorten hyvinvointia.
+        </p>
+      </div>
+
+      <a href="#tuki" class="button">Tule mukaan</a>
+
+    </div>
+  </section>
+
+  <section class="section" id="tuki">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Tue toimintaamme</div>
+        <h2>Jokainen panos voi avata uuden mahdollisuuden.</h2>
+        <p>
+          RusseLi rakentaa tulevaisuutta, jossa lapsilla
+          ja nuorilla on mahdollisuus harrastaa, oppia
+          ja kuulua yhteisöön.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <div class="brand">
+          <span class="logo-mark">
+            <i class="pin"></i>
+            <i class="pin"></i>
+            <i class="pin"></i>
+          </span>
+          <span class="brand-name">Russe<span>Li</span></span>
+        </div>
+
+        <p>
+          Yhdessä enemmän. Liikuntaa, yhteisöllisyyttä
+          ja uusia mahdollisuuksia.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <strong>RusseLi</strong>
+        <a href="#meista">Meistä</a>
+        <a href="#toiminta">Toiminta</a>
+        <a href="#nuorille">Nuorille</a>
+        <a href="#yhteistyo">Yhteistyö</a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 RusseLi · Yhdessä enemmän
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
